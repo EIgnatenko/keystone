@@ -3,9 +3,20 @@ import {
 } from './constants';
 
 const initialState = {
-    total: 0,
-    en: 0,
-    fr: 0,
+    data: {
+		general: {
+			total: 0,
+			en: 0,
+			fr: 0
+		},
+		byAge: {
+			firstG: 0,
+			secondG: 0,
+			thirdG: 0,
+			fourthG: 0
+		},
+		byDate: {}
+	},
     hasError: false,
     isLoading: false
 };
@@ -19,9 +30,7 @@ function statistic (state = initialState, action) {
 		case STATISTIC_LOADING_SUCCESS:
 			return {
                 ...state,
-                en: action.payload.en,
-                fr: action.payload.fr,
-                total: action.payload.total,
+                data: action.payload
             }
 		// case COUNTS_LOADING_ERROR:
 		// 	return assign({}, state, {
