@@ -8,6 +8,7 @@ import {
 	InlineGroupSection as Section,
 	Container
 } from '../../elemental';
+import moment from 'moment';
 
 class Statistic extends Component {
 	state = {
@@ -20,8 +21,9 @@ class Statistic extends Component {
 
    
 	render() {
-        const { general, byAge, byDate } = this.props.statistic.data
-        const regPerDayBody = Object.keys(byDate).map(key => (
+        const { general, byAge, byDate } = this.props.statistic.data;
+        const sortedDate = Object.keys(byDate).sort((a,b) => moment(a) - moment(b))
+        const regPerDayBody = sortedDate.map(key => (
             <tr>
                 <th scope="row">{key}</th>
                 <td>{byDate[key].total}</td>
